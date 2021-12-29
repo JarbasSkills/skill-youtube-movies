@@ -34,6 +34,9 @@ class YoutubeFullMoviesSkill(OVOSCommonPlaybackSkill):
         elif self.voc_match(phrase, "movie"):
             base_score += 5
             phrase = self.remove_voc(phrase, "movie")
+        elif media_type != MediaType.MOVIE:
+            # only search db if user explicitly requested movies
+            return
 
         if self.voc_match(phrase, "youtube"):
             # explicitly requested youtube
